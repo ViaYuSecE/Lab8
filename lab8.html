@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Lab 8</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <style>
+        #task2 {
+            background-color: white;
+            border: 2px;
+            border-color: black;
+        }
+
+        h1 {
+            font-size: small;
+        }
+
+        li {
+            background-color: #FFE982;
+        }
+
+        #focus {
+            outline: none;
+        }
+
+        #task2,
+        #task6 {
+            max-width: 30%;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="task1">
+        <h1>Task 1</h1>
+        <button id="button1">Click Me</button>
+    </div>
+
+    <br><br>
+
+    <div id="task2">
+        <h1>Task 2</h1>
+        <p>Hover over me</p>
+    </div>
+
+    <br><br>
+
+    <div id="task3">
+        <h1>Task 3</h1>
+
+        <form>
+            <input placeholder="Type something" />
+            <p id="log"></p>
+        </form>
+    </div>
+
+    <br><br>
+
+    <div id="task4">
+        <h1>Task 4</h1>
+        <form id="myForm">
+            <label for="name">Name: </label>
+            <input type="text" id="name" name="name" />
+            <button type="submit" id="button2">Submit</button>
+        </form>
+    </div>
+
+    <br><br>
+
+    <div id="task5">
+        <h1>Task 5</h1>
+
+        <form>
+            <input id="focus" placeholder="Focus on me" />
+        </form>
+    </div>
+
+    <br><br>
+
+    <div id="task6">
+        <h1>Task 6</h1>
+        <ul>
+            <li>Click me</li>
+            <li>Don't click me</li>
+            <li>Click me</li>
+            <li>Don't click me</li>
+            <li>Click me</li>
+        </ul>
+    </div>
+
+    <script>
+        //Task 1
+        document.getElementById("button1").addEventListener("click", changeText);
+
+        function changeText() {
+            document.getElementById("button1").innerHTML = "Clicked!";
+        }
+
+        //Task 2
+        function colorChange() {
+            document.getElementById("task2").style.backgroundColor = "#FFE982";
+        }
+
+        function colorBack() {
+            document.getElementById("task2").style.backgroundColor = "#F9B19A";
+        }
+
+        document.getElementById("task2").addEventListener("mouseenter", colorChange);
+        document.getElementById("task2").addEventListener("mouseleave", colorBack);
+
+        //Task 3
+        const input1 = document.querySelector("input");
+        const log = document.getElementById("log");
+
+        input1.addEventListener("keyup", logKey);
+
+        function logKey(e) {
+            log.textContent += ` ${e.code}`;
+        }
+
+        //Task 4
+        document.getElementById("myForm").addEventListener("submit", preventAndLog);
+
+        function preventAndLog(event) {
+            event.preventDefault();
+            let name = document.getElementById("name");
+            console.log(name.value);
+        }
+
+        //Task 5
+        let input2 = document.getElementById("focus");
+        input2.addEventListener("focus", changeBorderColor);
+        input2.addEventListener("blur", changeBorderBack);
+
+        function changeBorderColor() {
+            document.getElementById("focus").style.borderColor = "#FFE982";
+        }
+        function changeBorderBack() {
+            document.getElementById("focus").style.borderColor = "#F9B19A";
+        }
+
+        //Task 6
+        document.querySelector("ul").addEventListener("click", function (e) {
+            if (e.target && e.target.nodeName == "LI") {
+                e.target.style.backgroundColor = "#F9B19A";
+            }
+        });
+    </script>
+
+</body>
+
+</html>
